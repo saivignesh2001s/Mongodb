@@ -1,0 +1,37 @@
+db.sports.insertMany([
+    {
+       "Name":"Football",
+      "RequiresTeam":"True"
+    },
+    {
+       "Name":"Chess",
+      "RequiresTeam":"False"
+    },
+    {
+       "Name":"Cricket",
+      "RequiresTeam":"True"
+    },
+    {
+       "Name":"Squash",
+      "RequiresTeam":"False"
+    },
+    
+])
+ db.sports.updateOne(
+    {"Name":"Football"},
+      {
+        $set:{"Noofmembers":8}
+        }
+)
+db.sports.updateOne(
+    {"Name":"Cricket"},
+      {
+        $set:{"Noofmembers":10}
+        }
+)
+db.sports.updateMany(
+     {"RequiresTeam":"True"},
+     {
+      $set:{"Noofmembers":20}
+      }
+)

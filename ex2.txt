@@ -1,0 +1,59 @@
+db.companies.insertOne(
+{ 
+   "_id":1,
+   "name":"mphasis",
+   "founded":1993,
+   "stock_value":300,
+   "No.of.Employees":30000
+}
+)
+db.companies.insertMany([
+{
+   "_id":2,
+   "name":"infosys",
+   "founded":1991,
+   "stock_value":200,
+   "No.of.Employees":10000
+},
+{
+   "_id":2,
+   "name":"TCS",
+   "founded":1991,
+   "stock_value":150,
+   "No.of.Employees":15000
+}
+])
+db.companies.insertMany([
+{
+   "_id":2,
+   "name":"ABC",
+   "founded":1991,
+   "stock_value":200,
+   "No.of.Employees":10000
+},
+{
+   "_id":2,
+   "name":"CAD",
+   "founded":1992,
+   "stock_value":150,
+   "No.of.Employees":15000
+}
+],
+{ordered:false}
+)
+var bulk = db.companies.initializeUnorderedBulkOp();
+bulk.insert( {"name":"PAD","founded":1991,"stock_value":200,"No.of.Employees":10000});
+bulk.insert( {"name":"rBC","founded":1992,"stock_value":150,"No.of.Employees":15000});
+bulk.execute( { w: 1, wtimeout: 5000 } ); 
+db.companies.insertOne(
+{ 
+   "_id":1,
+   "name":"FASH",
+   "founded":1994,
+   "stock_value":310,
+   "No.of.Employees":40000
+}
+
+db.moviestart.aggregate([{
+$match:{"genre":"thriller"}},{$project:
+{"title":"$title"}}])    

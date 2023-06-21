@@ -1,0 +1,26 @@
+db.map.createIndex({location:"2dsphere"})
+db.map.find({location:{$near:{$minDistance:19000,$maxDistance:60000,$geometry:{$type:"Point",coordinates:[12.677468949906421,78.01695419204042]}}}})
+box = [[12.677468949906421, 78.01695419204042], [12.747935316058067, 77.8410722923103]]
+db.map.find({"location" : {"$within" : {"$box" : box}}})
+db.maps.insertMany([
+{
+   "location": {
+      "type": "Point",
+      "coordinates": [12.300573796785217, 76.63156603040123]
+   },
+   "name":"Mysuru"
+},
+{
+   "location": {
+      "type": "Point",
+      "coordinates": [11.698926190532719, 78.13701413775962]
+   },
+   "name":"Salem"
+}
+])
+db.map.aggregate([{$geoNear:{near:{type:"Point",coordinates:[11.698926190532719, 78.13701413775962]},distanceField: "dist.calculated",maxDistance:40000}},{$out: "maps" }])
+db.maps.find({"location.coordinates":[11.698926190532719, 78.13701413775962]})
+outside:
+  Noresult
+inside:
+  gave output

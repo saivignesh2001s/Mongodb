@@ -1,0 +1,11 @@
+db.person.aggregate([
+{
+  $match:{"dob.age":{$gt:50}}
+},
+{
+  $group:{_id:{gender:"$gender"},NoPersons: {$sum:1},Averageage: {$avg:"$dob.age"}}
+},
+{
+  $sort:{NoPersons:-1}
+}
+])
